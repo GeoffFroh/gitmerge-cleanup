@@ -65,7 +65,7 @@ def main():
     parser = argparse.ArgumentParser(description=description, epilog=epilog,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('filesdir', help='Path to DDR repo with bad files.')
-    parser.add_argument('outputpath', nargs='?', default=os.path.join(os.getcwd(),"/gitmerge-cleanupOut/"), help='Path to save output.')
+    parser.add_argument('outputpath', nargs='?', default=os.path.join(os.getcwd(),"gitmerge-cleanupOut/"), help='Path to save output.')
 
     args = parser.parse_args()
     print('Repo dir path: {}'.format(args.filesdir))
@@ -80,6 +80,8 @@ def main():
     if inputerrs != '':
         print('Error -- script exiting...\n{}'.format(inputerrs))
     else:
+        print('{} - Starting run.'.format(datetime.datetime.now()))
+        print('Cleaned files will be saved to: {}'.format(args.outputpath))
         cleanFiles(args.filesdir,args.outputpath)
     
     finished = datetime.datetime.now()
